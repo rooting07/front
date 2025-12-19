@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>2wbit | إنشاء حساب</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body{
+  background:#0f2027;
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:Arial;
+  color:white;
+}
+.box{
+  background:#111;
+  padding:30px;
+  width:330px;
+  border-radius:10px;
+}
+h2{text-align:center;color:#00ffcc}
+input,button{
+  width:100%;
+  padding:12px;
+  margin:10px 0;
+  border-radius:6px;
+  border:none;
+}
+button{
+  background:#00ffcc;
+  font-weight:bold;
+}
+.error{color:red;text-align:center;display:none}
+</style>
+</head>
+<body>
+
+<div class="box">
+<h2>2wbit</h2>
+
+<input id="email" type="email" placeholder="الإيميل">
+<input id="password" type="password" placeholder="كلمة المرور">
+
+<button onclick="register()">إنشاء حساب</button>
+<div class="error" id="error"></div>
+</div>
+
+<script>
+async function register(){
+  const email = email.value;
+  const password = password.value;
+  const error = document.getElementById("error");
+
+  try{
+    const res = await fetch("http://localhost:3000/api/auth/register",{
+      method:"POST",
+      headers:{ "Content-Type":"application/json" },
+      body:JSON.stringify({email,password})
+    });
+
+    const data = await res.json();
+    if(!res.ok){
+      error.innerText = data.message;
+      error.style.display="block";
+      return;
+    }
+
+    localStorage.setItem("user",JSON.stringify(data.user));
+    window.location.href="dashboard.html";
+
+  }catch{
+    error.innerText="السيرفر غير متصل";
+    error.style.display="block";
+  }
+}
+</script>
+</body>
+</html>

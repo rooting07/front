@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>2wbit</title>
+
+<style>
+body{
+  margin:0;
+  background:#020617;
+  color:#e5e7eb;
+  font-family:Arial;
+}
+
+/* Header */
+header{
+  background:#020617;
+  border-bottom:1px solid #1e293b;
+  padding:15px 25px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+header h2{
+  color:#facc15;
+  margin:0;
+  letter-spacing:1px;
+}
+header button{
+  background:#dc2626;
+  border:none;
+  padding:8px 14px;
+  color:#fff;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+/* Layout */
+.container{
+  padding:25px;
+}
+.balance{
+  background:linear-gradient(135deg,#020617,#1e293b);
+  padding:25px;
+  border-radius:14px;
+  margin-bottom:25px;
+}
+.balance h3{
+  margin:0;
+  color:#94a3b8;
+}
+.balance h1{
+  margin-top:10px;
+  color:#22c55e;
+}
+
+/* Cards */
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
+}
+.card{
+  background:#020617;
+  border:1px solid #1e293b;
+  border-radius:14px;
+  padding:25px;
+  transition:0.3s;
+}
+.card:hover{
+  transform:translateY(-5px);
+  border-color:#facc15;
+}
+.card h3{
+  margin-top:0;
+  color:#facc15;
+}
+.card p{
+  color:#94a3b8;
+}
+.card button{
+  margin-top:15px;
+  width:100%;
+  padding:12px;
+  border:none;
+  border-radius:8px;
+  background:#22c55e;
+  font-weight:bold;
+  cursor:pointer;
+}
+.card.casino button{
+  background:#38bdf8;
+}
+.card.deposit button{
+  background:#facc15;
+}
+
+/* Footer */
+footer{
+  text-align:center;
+  padding:20px;
+  color:#64748b;
+  font-size:13px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h2⚜️ 2wbit</h2>
+  <button onclick="logout()">تسجيل خروج</button>
+</header>
+
+<div class="container">
+
+  <!-- Balance -->
+  <div class="balance">
+    <h3>رصيدك الحالي</h3>
+    <h1>$ 0.00</h1>
+  </div>
+
+  <!-- Main Sections -->
+  <div class="cards">
+
+    <div class="card">
+      <h3>🎯 الرهان الذكي</h3>
+      <p>
+        نظام يعتمد على الإحصائيات، التذبذب،
+        ونسبة الربح بدل الـ Odds التقليدية.
+      </p>
+      <button>دخول الرهان</button>
+    </div>
+
+    <div class="card casino">
+      <h3>🎰 الكازينو</h3>
+      <p>
+        ألعاب رقمية متقدمة،
+        إدارة مخاطرة،
+        وتجربة احترافية.
+      </p>
+      <button>دخول الكازينو</button>
+    </div>
+
+    <div class="card deposit">
+      <h3>💳 الإيداع</h3>
+      <p>
+        إيداع يدوي أو تلقائي،
+        إدارة محافظ،
+        وموافقة الموظفين.
+      </p>
+      <button>إيداع الأموال</button>
+    </div>
+
+  </div>
+
+</div>
+
+<footer>
+© 2025 2wbit – جميع الحقوق محفوظة
+</footer>
+
+<script>
+// حماية الصفحة
+if(!localStorage.getItem("token")){
+  location.href="login.html";
+}
+
+function logout(){
+  localStorage.removeItem("token");
+  location.href="login.html";
+}
+</script>
+
+</body>
+</html>

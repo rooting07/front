@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>2wbit | Dashboard</title>
+<style>
+body{margin:0;font-family:Arial;background:#0b0f14;color:white}
+header{
+  background:#111;
+  padding:15px;
+  display:flex;
+  justify-content:space-between;
+}
+.boxes{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:20px;
+  padding:20px;
+}
+.card{
+  background:#111;
+  padding:20px;
+  border-radius:10px;
+  text-align:center;
+}
+.card h3{color:#00ffcc}
+button{
+  background:#00ffcc;
+  border:none;
+  padding:10px 20px;
+  border-radius:6px;
+  font-weight:bold;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div>2wbit</div>
+  <button onclick="logout()">خروج</button>
+</header>
+
+<div class="boxes">
+  <div class="card">
+    <h3>الرصيد</h3>
+    <p id="balance">0 USDT</p>
+  </div>
+
+  <div class="card">
+    <h3>إيداع</h3>
+    <button>إيداع</button>
+  </div>
+
+  <div class="card">
+    <h3>كازينو</h3>
+    <button>دخول</button>
+  </div>
+</div>
+
+<script>
+const user = JSON.parse(localStorage.getItem("user"));
+if(!user){ location.href="login.html"; }
+
+document.getElementById("balance").innerText =
+(user.balance || 0) + " USDT";
+
+function logout(){
+  localStorage.clear();
+  location.href="login.html";
+}
+</script>
+</body>
+</html>
